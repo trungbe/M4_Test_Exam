@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+    <head th:replace="/layout :: head"></head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<form id="form" th:object="${city}" method="post">
+    <div>
+        <label>Tên thành phố</label>
+        <input type="text" th:field="*{name}"/>
+    </div>
+    <div>
+        <label>Đất nước</label>
+        <select th:field="*{country}">
+            <th:block th:each="c:${listCountry}">
+                <option th:value="${c.id}" th:text="${c.name}"></option>
+            </th:block>
+        </select>
+    </div>
+    <div>
+        <label>Diện tích</label>
+        <input type="text" th:field="*{totalArea}"/>
+    </div>
+    <div>
+        <label>Dân số</label>
+        <input type="text" th:field="*{population}"/>
+    </div>
+    <div>
+        <label>GDP</label>
+        <input type="text" th:field="*{gdp}"/>
+    </div>
+    <div>
+        <label>Mô tả</label>
+        <textarea  rows="5" cols="59"  th:field="*{description}"></textarea>
+    </div>
+    <button class="btn btn-primary">Edit</button>
+</form>
+</body>
+<footer th:replace="/layout :: footer"></footer>
+</html>

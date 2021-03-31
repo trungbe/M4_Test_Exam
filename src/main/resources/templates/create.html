@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+    <head th:replace="/layout :: head"></head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Form create</h1>
+
+<form id="form" th:object="${city}" method="post">
+    <div>
+        <label>Tên</label>
+        <input type="text" th:field="*{name}"/>
+        <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+    </div>
+    <div>
+        <label>Đất nước</label>
+        <select th:field="*{country}">
+            <th:block th:each="country:${listCountry}">
+                <option th:value="${country.id}" th:text="${country.name}"></option>
+            </th:block>
+        </select>
+    </div>
+    <div>
+        <label>Diện tích</label>
+        <input type="text" th:field="*{totalArea}"/>
+        <td th:if="${#fields.hasErrors('totalArea')}" th:errors="*{totalArea}">Name Error</td>
+
+    </div>
+    <div>
+        <label>Dân số</label>
+        <input type="text" th:field="*{population}"/>
+        <td th:if="${#fields.hasErrors('population')}" th:errors="*{population}">Name Error</td>
+
+    </div>
+    <div>
+        <label>GDP</label>
+        <input type="text" th:field="*{gdp}"/>
+        <td th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}">Name Error</td>
+    </div>
+    <div>
+        <label>Mô tả</label>
+        <textarea rows="5" cols="59" th:field="*{description}"></textarea>
+        <td th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</td>
+    </div>
+    <button class="btn btn-primary" type="submit">Create</button>
+</form>
+</body>
+<footer th:replace="/layout :: footer"></footer>
+</html>
